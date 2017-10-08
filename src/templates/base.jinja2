@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wish For A World</title>
+
+    {% include 'html_dependencies.jinja2' %}
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" title="Home">W4AW</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('wishes.index') }}">Board of Wishes</a></li>
+            </ul>
+            {% if session['email'] %}
+            <ul class="navbar navbar-nav navbar-right">
+                <li><a href="{{ url_for('users.logout_user') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+            </ul>
+            {% else %}
+            <ul class="navbar navbar-nav navbar-right">
+                <li><a href="{{ url_for('users.register_user') }}"><span class="glyphicon glyphicon-register"></span> Sign up</a></li>
+                <li><a href="{{ url_for('users.login_user') }}"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+             </ul>
+            {% endif %}
+        </div>
+
+    </div>
+</nav>
+<div class="content container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+</body>
+</html>
